@@ -1,6 +1,7 @@
 #left-col, #rigth-col{
     display:inline-block;
     vertical-align: top;
+    overflow: auto;
 }
 #left-col{
     width: 74.5%;
@@ -27,9 +28,13 @@
 }
 
 .content-list-view-user > div{
-    font-size:20px;
+    font-size: 20px;
     flex-grow: 1;
     text-align: center;
+    /*Ajout centrage vertical*/
+    height: 85px;
+    line-height: 85px;
+    white-space: nowrap;
 }
 
 .message-datetime{

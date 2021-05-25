@@ -17,7 +17,8 @@
 </head>
 
 <body>
-    <div id="top-bar"style="text-align: center; background-color: red; font-size: 25px;color: white;">JS PAS CHARGE</div>
+    <div id="top-bar" style="text-align: center; background-color: red; font-size: 25px;color: white;">JS PAS CHARGE
+    </div>
     <nav class="navbar navbar-inverse">
         <a class="navbar-brand" href="#">Tchat.js</a>
         <ul class="nav navbar-nav">
@@ -68,6 +69,15 @@
             </div>
         </div>
         <div id="tchat-second-row">Editeur de messages</div>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                let baliseload = document.getElementById("top-bar");
+                baliseload.style.backgroundColor = "blue";
+                baliseload.innerHTML = "Page chargée"
+            }, false);
+
+
+        </script>
 </body>
 
 </html>
