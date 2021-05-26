@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -11,14 +11,13 @@
     <link rel="stylesheet" media="screen" href="vendor/css/bootstrap.css">
     <script src="vendor/js/jquery.js"></script>
     <script src="vendor/js/bootstrap.js"></script>
+    <script src="vendor/js/moment.min.js"></script>
 
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-    <div id="top-bar" style="text-align: center; background-color: red; font-size: 25px;color: white;">JS PAS CHARGE
-    </div>
     <nav class="navbar navbar-inverse">
         <a class="navbar-brand" href="#">Tchat.js</a>
         <ul class="nav navbar-nav">
@@ -60,15 +59,31 @@
                 <h2>Utilisateurs</h2>
                 <div class="content-list-view-user">
                     <img class="user-image" src="https://picsum.photos/id/684/600/400" alt="image">
-                    <div class="user-name">Username</div>
+                    <div class="user-name">Poulpe</div>
                 </div>
                 <div class="content-list-view-user">
                     <img class="user-image" src="https://picsum.photos/id/684/600/400" alt="image">
-                    <div class="user-name">Username</div>
+                    <div class="user-name">Patrick</div>
                 </div>
             </div>
         </div>
-        <div id="tchat-second-row">Editeur de messages</div>
+        <div class="line-part-sep"></div>
+        <div id="tchat-second-row">
+            <label id="message-editor-title">Editeur de messages</label>
+            <form action="#" name="message-sender">
+                <select name="message-to" id="message-to" class="">
+                    <option value="jason">Jason</option>
+                    <option value="boby">Boby</option>
+                </select>
+                <div class="input-container">
+                    <input type="color" id="message-color" name="message-color" class="msg-form-btn">
+                    <input type="submit" class="msg-form-btn submit-btn" value="">
+                    <input type="reset" class="msg-form-btn reset-btn" value="">
+                </div>
+
+                <textarea id="message-text" name="message-text" rows="10"></textarea>
+            </form>
+        </div>
         <!-- Ajout du slash avant JS définit que c'est la source du site-->
         <script type="text/javascript" src="/js/index.js"></script>
 </body>
