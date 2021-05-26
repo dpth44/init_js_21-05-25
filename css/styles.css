@@ -1,4 +1,4 @@
-#left-col, #rigth-col{
+#left-col, #right-col{
     display:inline-block;
     vertical-align: top;
     overflow: auto;
@@ -6,7 +6,7 @@
 #left-col{
     width: 74.5%;
 }
-#rigth-col{
+#right-col{
     width: 23.5%;
     margin-left:20px;
 }
@@ -49,7 +49,7 @@
     vertical-align: baseline;
 }
 .content-list-view{
-    height: calc(78vh - 50px - 35px);
+    height: calc(77vh - 50px - 35px);
 }
 h2{
     text-align: center;
@@ -89,26 +89,27 @@ textarea{
     height: 10px;
 }
 .msg-form-btn{
-    margin-right: 10px;
-    width:30px;
-    height: 30px;
+    margin-right: 25px;
+    width:40px;
+    height: 40px;
     border:0;
     outline:0;
     outline:none!important;
-    background-color: #150e56;
+    background-color: white;
     border-radius: 4px;
     
 }
 .reset-btn{
-    font-family:"Helvetica, sans-serif";
-    color:white;
-    font-size:20px;
+    background-image: url(/img/reset-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 40px;
 }
 .submit-btn{
     background-image: url(/img/send-icon.svg);
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 18px;
+    background-size: 40px;
 }
 
 .form-select{
