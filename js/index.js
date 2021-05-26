@@ -1,8 +1,3 @@
-let userList = document.querySelectorAll(".content-list-view-user");
-userList.forEach(element => {
-    element.addEventListener('click', onuserclick);
-});
-
 function onsubmitmessageform(evt) {
     evt.preventDefault();
     let recipient = document.forms["message-sender"]["message-to"].value;
@@ -24,6 +19,13 @@ function appendMessageOnDOM(message, messageTemplate) {
     let date = moment().format('L').replace("/", "-") + '<br/>' + moment().format('LTS').substring(0, 8);
     toFillTemplate.querySelector('.message-datetime').innerHTML = date.substring();
     toFillTemplate.querySelector('.message-content').innerHTML = message.value;
+    let userImgSrc = "";
+    if(!message.user){
+        userImgSrc = "https://picsum.photos/id/684/600/400";
+    }else{
+        userImgSrc = message.user.img;
+    }
+    toFillTemplate.querySelector('.message-image').src = userImgSrc;
     document.querySelector('#left-col').append(toFillTemplate);
 }
 
@@ -42,14 +44,17 @@ function appendUserOnDOM(user,templateDOM) {
     toFillTemplate.querySelector('.user-name').innerHTML = user.name;
     toFillTemplate.querySelector('.user-image').src = user.img;
     toFillTemplate.addEventListener('click',onuserclick);
+    let option = document.createElement('option');
+    option.value = option.innerHTML =  user.name;
+    document.forms["message-sender"]["message-to"].add(option);
     document.querySelector('#right-col').append(toFillTemplate);
 }
 
 function bindsEvents() {
-    document.getElementById("message-to").selectedIndex = -1;
     document.forms["message-sender"].addEventListener('submit', onsubmitmessageform);
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+    document.forms["message-sender"]["message-to"].selectedIndex = -1;
     bindsEvents();
 });

@@ -14,6 +14,12 @@
 .content-list-view-user{
     display: flex;
 }
+.content-list-view-user{
+    cursor:pointer;
+}
+.content-list-view-message{
+    margin-left: 5px;
+}
 .content-list-view-message > *{
     display: inline-block;
     vertical-align: middle;
@@ -24,7 +30,7 @@
 }
 .content-list-view-user > img{
     width:70px;
-    height: 85px;
+    height: 75px;
 }
 
 .content-list-view-user > div{
@@ -32,8 +38,8 @@
     flex-grow: 1;
     text-align: center;
     /*Ajout centrage vertical*/
-    height: 85px;
-    line-height: 85px;
+    height: 75px;
+    line-height: 75px;
     white-space: nowrap;
 }
 
