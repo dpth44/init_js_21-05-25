@@ -52,9 +52,10 @@ function appendUserOnDOM(user,templateDOM) {
 
 function bindsEvents() {
     document.forms["message-sender"].addEventListener('submit', onsubmitmessageform);
+    document.forms["login"].addEventListener('submit', onsubmitmessageform);
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-    document.forms["message-sender"]["message-to"].selectedIndex = -1;
+    //location.replace("./auth.html");
     bindsEvents();
 });

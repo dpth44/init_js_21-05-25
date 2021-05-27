@@ -1,4 +1,5 @@
 let template = document.createElement('div');
+let msg_template,user_template;
 let messages = [
     { id: 0, value: "Mon Message 1", userId: 0, color: '#452141', dateTime: new Date() },
     { id: 1, value: "Mon Message 2", userId: 1, color: '#452141', dateTime: new Date() },
@@ -22,15 +23,17 @@ let users = [
 
 window.addEventListener("DOMContentLoaded", () => {
     $(function () {
-        $(template).load("stock_html.html", function () {
-            launchUserCreation(users, template.children[1])
+        $(template).load("views/tchat.html", function () {
+            msg_template= template.querySelector('.content-list-view-message');
+            user_template= template.querySelector('.content-list-view-user');
+            launchUserCreation(users, user_template);
             document.forms["message-sender"]["message-to"].selectedIndex = -1;
             messages.forEach(element => {
                var userFound=  users.find(function (userElement) {
                     return element.userId === userElement.id
                 });
                 element.user = userFound;
-                appendMessageOnDOM(element, template.children[0]);
+                appendMessageOnDOM(element, msg_template);
             });
         });
     });
