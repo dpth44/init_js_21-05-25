@@ -55,7 +55,7 @@
     vertical-align: baseline;
 }
 .content-list-view{
-    height: calc(77vh - 50px - 35px);
+    height: calc(75vh - 50px - 35px);
 }
 h2{
     text-align: center;
@@ -77,6 +77,7 @@ textarea{
     margin-left: auto;
     margin-right: auto;
     margin-top:10px;
+    font-size:16px;
 }
 
 #message-editor-title{
@@ -106,24 +107,12 @@ textarea{
     border-radius: 4px;
     
 }
-.reset-btn{
-    background-image: url(/img/reset-icon.svg);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 40px;
-}
-.submit-btn{
-    background-image: url(/img/send-icon.svg);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 40px;
-}
 
 .form-select{
     width:auto;
 }
 #message-color{
-    margin-left: 10px;
+    margin-left: 30px;
     background-color: white;
 }
 .input-container{
@@ -131,4 +120,12 @@ textarea{
 }
 #message-to{
     margin-left:20px;
+    position: relative;
+    top: -10px;
+}
+#resetBtn{
+    margin-right: 50px;;
+}
+.btn{
+    width:100px;
 }

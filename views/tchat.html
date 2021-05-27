@@ -2,20 +2,9 @@
     <div id="tchat-first-row" class="col">
         <div id="left-col" class="content-list-view">
             <h2>Messages</h2>
-            <div class="content-list-view-message">
-                <img class="message-image" src="https://picsum.photos/id/684/600/400" alt="image">
-                <div class="message-datetime">2021-05-25<br />12:49:12</div>
-                <div class="message-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro tenetur
-                    reprehenderit natus, odit fugit nihil necessitatibus doloribus cupiditate minima, quisquam
-                    soluta! Labore mollitia veritatis totam. Quos aliquid necessitatibus enim officiis.</div>
-            </div>
         </div>
         <div id="right-col" class="content-list-view">
             <h2>Utilisateurs</h2>
-            <div class="content-list-view-user">
-                <img class="user-image" src="https://picsum.photos/id/684/600/400" alt="image">
-                <div class="user-name">Poulpe</div>
-            </div>
         </div>
     </div>
     <div class="line-part-sep"></div>
@@ -26,10 +15,9 @@
             </select>
             <div class="input-container">
                 <input type="color" id="message-color" name="message-color" class="msg-form-btn">
-                <input type="reset" class="msg-form-btn reset-btn" value="">
-                <input type="submit" class="msg-form-btn submit-btn" value="">
+                <input id="resetBtn"type="reset" class="btn btn-warning" value="Réinitialiser" title="Reset le texte">
+                <input id="submitBtn" type="submit" class="btn btn-success" value="Envoyer" title="Envoyer le message">
             </div>
-
             <textarea id="message-text" name="message-text" rows="10"></textarea>
         </form>
     </div>
