@@ -1,23 +1,44 @@
 
-let tchatDFD, users, msg_template = document.createElement("div"), user_template = document.createElement("div");
+let tchatDFD, errorPopup, currentUser, users, msg_template = document.createElement("div"), user_template = document.createElement("div");
 // let fragment = document.createDocumentFragment();
 function onsubmitmessageform(evt) {
     evt.preventDefault();
-    let recipient = document.forms["message-sender"]["message-to"].value;
+    let to = document.forms["message-sender"]["message-to"].value;
     let color = document.forms["message-sender"]["message-color"].value;
     let content = document.forms["message-sender"]["message-text"].value;
+    if (!to || !content ) {
+        displayErrorPopup();
+        return
+    }
     let message = {
         value: content,
-        recipient: recipient,
+        to: to,
         color: color,
         datetime: new Date(),
-        user:JSON.parse(localStorage.getItem('currentUser'))
+        userId: currentUser.id
     }
-    appendMessageOnDOM(message, msg_template);
-    document.forms["message-sender"]["message-to"].selectedIndex = -1;
+    xhr('http://localhost:4475/messages', function (response) {
+        let messageBis = JSON.parse(response);
+        messageBis.user = currentUser;
+        appendMessageOnDOM(messageBis, msg_template);
+        document.forms["message-sender"]["message-to"].selectedIndex = -1;
+    }, "POST", message);
+
 
 }
-
+function displayErrorPopup() {
+    if (!errorPopup) {
+        errorPopup = document.createElement("div");
+        errorPopup.id = "errorPopup";
+        xhr("views/component/popupTemplate.html", function (response) {
+            errorPopup.innerHTML = response;
+            errorPopup.querySelector("#popupOk").addEventListener("click",function name(params) {
+                document.querySelector('#main').removeChild(errorPopup);
+            })
+        });
+        document.querySelector('#main').appendChild(errorPopup);
+    }
+}
 function appendMessageOnDOM(message, messageTemplate) {
     let toFillTemplate = messageTemplate.cloneNode(true);
     let date = moment().format('L').replace("/", "-") + '<br/>' + moment().format('LTS').substring(0, 8);
@@ -30,7 +51,6 @@ function appendMessageOnDOM(message, messageTemplate) {
 
 
 function launchUserCreation(templateDOM) {
-    console.log(users);
     users.forEach(element => {
         appendUserOnDOM(element, templateDOM);
     });
@@ -45,7 +65,8 @@ function appendUserOnDOM(user, templateDOM) {
     toFillTemplate.querySelector('.user-image').src = user.img;
     toFillTemplate.addEventListener('click', onuserclick);
     let option = document.createElement('option');
-    option.value = option.innerHTML = user.name;
+    option.value = user.id;
+     option.innerHTML = user.name;
     document.forms["message-sender"]["message-to"].add(option);
     document.querySelector('#right-col').append(toFillTemplate);
 }
@@ -53,7 +74,7 @@ function appendUserOnDOM(user, templateDOM) {
 function bindsEvents() {
     document.forms["message-sender"].addEventListener('submit', onsubmitmessageform);
     document.forms["message-sender"]["message-to"].selectedIndex = -1;
-    document.forms["message-sender"]["message-color"].addEventListener('input',function(evt){
+    document.forms["message-sender"]["message-color"].addEventListener('input', function (evt) {
         document.forms["message-sender"]["message-text"].style.color = evt.target.value;
     })
     // document.forms["auth"].addEventListener('submit', onsubmitmessageform);
@@ -78,16 +99,16 @@ function findItem(value) {
 }
 function onsubmitauthform(evt) {
     evt.preventDefault();
-    localStorage.setItem('currentUser', JSON.stringify(findItem(document.forms["auth"]["login"].value)));
+    currentUser = findItem(document.forms["auth"]["login"].value);
     tchatDFD.resolve();
 }
 
 window.addEventListener("DOMContentLoaded", () => {
     //location.replace("./auth.html");
-    Pxhr("views/auth.html", function (response) {
+    xhr("views/auth.html", function (response) {
         document.querySelector('div#main').innerHTML = response;
 
-        Pxhr("http://localhost:4475/users", function (response) {
+        xhr("http://localhost:4475/users", function (response) {
             users = JSON.parse(response);
             addUsersForAuth();
         });
@@ -96,21 +117,20 @@ window.addEventListener("DOMContentLoaded", () => {
     });
     tchatDFD = $.Deferred();
     tchatDFD.done(function () {
-        Pxhr("views/tchat.html", function (response) {
+        xhr("views/tchat.html", function (response) {
             document.querySelector('div#main').innerHTML = response;
-            Pxhr("views/messageTemplate.html", function (response) {
+            xhr("views/component/messageTemplate.html", function (response) {
                 msg_template.innerHTML = response;
-                Pxhr('http://localhost:4475/messages?_expand=user', function (response) {
+                xhr('http://localhost:4475/messages?_expand=user', function (response) {
                     JSON.parse(response).forEach(function (element) {
                         appendMessageOnDOM(element, msg_template);
                     });
                 });
-                // fragment.innerHTML = response;
             });
-            Pxhr("views/userTemplate.html", function (response) {
+            xhr("views/component/userTemplate.html", function (response) {
                 user_template.innerHTML = response;
                 launchUserCreation(user_template);
-                document.forms["message-sender"]["message-to"].selectedIndex = -1;            
+                document.forms["message-sender"]["message-to"].selectedIndex = -1;
             });
             bindsEvents()
         });

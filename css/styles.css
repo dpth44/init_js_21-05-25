@@ -55,7 +55,7 @@
     vertical-align: baseline;
 }
 .content-list-view{
-    height: calc(75vh - 50px - 35px);
+    height: calc(74vh - 50px - 35px);
 }
 h2{
     text-align: center;
@@ -82,10 +82,11 @@ textarea{
 
 #message-editor-title{
     margin-left:10px;
-    margin-bottom:0px;
+    margin-bottom:10px;
     font-size: 25px;
     font-weight: bold;
     width: auto;
+    display: block;
 }
 .line-part-sep{
     border-top: 2px solid #150e56;
@@ -112,20 +113,28 @@ textarea{
     width:auto;
 }
 #message-color{
-    margin-left: 30px;
     background-color: white;
 }
 .input-container{
     display: inline-flex;
+    width:calc(100% - 105px)
 }
 #message-to{
     margin-left:20px;
-    position: relative;
-    top: -10px;
 }
-#resetBtn{
+.btn-message-form{
+    width:100px;
     margin-right: 50px;;
 }
-.btn{
-    width:100px;
+.input-gestion-container{
+    width: 100%;
+    text-align: right;
+}
+#label-color{
+    display: flex;
+    align-items: center;
+    width: 145px;
+    margin-bottom: 0px;
+    font-weight: 400;
+    margin-left: 20px;
 }

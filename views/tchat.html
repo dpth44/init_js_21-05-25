@@ -14,9 +14,13 @@
             <select name="message-to" id="message-to" class="">
             </select>
             <div class="input-container">
+                <label id="label-color" for="message-color">Couleur de police </label>
                 <input type="color" id="message-color" name="message-color" class="msg-form-btn">
-                <input id="resetBtn"type="reset" class="btn btn-warning" value="Réinitialiser" title="Reset le texte">
-                <input id="submitBtn" type="submit" class="btn btn-success" value="Envoyer" title="Envoyer le message">
+                <div class="input-gestion-container">
+                    <input id="resetBtn"type="reset" class="btn btn-warning btn-message-form" value="Réinitialiser" title="Reset le texte">
+                    <input id="submitBtn" type="submit" class="btn btn-success btn-message-form" value="Envoyer" title="Envoyer le message">
+                </div>
+
             </div>
             <textarea id="message-text" name="message-text" rows="10"></textarea>
         </form>
